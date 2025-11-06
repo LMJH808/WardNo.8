@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第八精神病院 - 測驗登入</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: url('bg.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Nosifer', cursive;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(30, 0, 0, 0.6);
+      border: 2px solid #ff0000;
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 700px;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      color: #ff0000;
+      margin-bottom: 1.5rem;
+    }
+
+    .question {
+      font-size: clamp(1.2rem, 1.6vw, 1.8rem);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      color: #ffdddd;
+    }
+
+    input {
+      padding: 0.8rem;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      border: 2px solid white;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      text-align: center;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    button {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 0.8rem 1rem;
+      font-size: clamp(1rem, 1.4vw, 1.6rem);
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background: red;
+      border-color: red;
+      color: white;
+      text-shadow: 0 0 10px black;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    #resultModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .result-box {
+      background: rgba(60, 0, 0, 0.9);
+      border: 3px solid #ff0000;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 800px;
+      color: #ffdddd;
+      box-shadow: 0 0 50px #ff0000;
+    }
+
+    .result-box h2 {
+      color: #ff2222;
+      margin-bottom: 1rem;
+    }
+
+    .result-box p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      white-space: pre-line;
+    }
+
+    .result-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .result-buttons button {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 8px;
+    }
+
+    .result-buttons button:hover {
+      background: red;
+      border-color: red;
+      text-shadow: 0 0 10px black;
+    }
+
+    /* 4K 響應式 */
+    @media (min-width: 3840px) {
+      .container {
+        max-width: 2000px;
+        padding: 5rem 6rem;
+        border-width: 6px;
+        border-radius: 40px;
+        box-shadow: 0 0 100px rgba(255, 0, 0, 0.7);
+      }
+
+      h1 {
+        font-size: 9rem;
+        margin-bottom: 3rem;
+      }
+
+      .question {
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+      }
+
+      input {
+        font-size: 3rem;
+        padding: 2rem;
+        border-width: 5px;
+        max-width: 1000px;
+        border-radius: 25px;
+      }
+
+      button {
+        font-size: 3rem;
+        padding: 2rem 4rem;
+        border-width: 5px;
+        border-radius: 25px;
+      }
+
+      .result-box {
+        max-width: 1800px;
+        padding: 5rem 6rem;
+        border-width: 6px;
+        border-radius: 40px;
+        box-shadow: 0 0 120px rgba(255, 0, 0, 0.8);
+      }
+
+      .result-box h2 {
+        font-size: 5rem;
+        margin-bottom: 2rem;
+      }
+
+      .result-box p {
+        font-size: 3rem;
+        line-height: 1.8;
+        margin-bottom: 3rem;
+      }
+
+      .result-buttons button {
+        font-size: 3rem;
+        padding: 2rem 4rem;
+        border-width: 5px;
+        border-radius: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 密碼登入頁 -->
+  <div class="container" id="loginScreen">
+    <h1>第八精神病院登入系統</h1>
+    <p class="question">請輸入進入病院的通行密碼。</p>
+    <input type="password" id="passwordInput" placeholder="請輸入密碼">
+    <br>
+    <button onclick="checkPassword()">登入</button>
+    <p id="loginError" style="color:#ff6666;margin-top:1rem;display:none;">密碼錯誤，請重新輸入。</p>
+  </div>
+
+  <!-- 暱稱輸入頁 -->
+  <div class="container" id="startScreen" style="display:none;">
+    <h1>建立病歷檔案</h1>
+    <p class="question">請輸入你的名字或暱稱。</p>
+    <input type="text" id="nickname" placeholder="請輸入你的病歷名">
+    <br>
+    <button onclick="startQuiz()">開始測驗</button>
+  </div>
+
+  <!-- 測驗內容 -->
+  <div class="container" id="quiz" style="display:none;">
+    <h1 id="welcomeTitle"></h1>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- 結果畫面 -->
+  <div id="resultModal">
+    <div class="result-box" id="resultBox">
+      <h2 id="resultTitle"></h2>
+      <p id="resultText"></p>
+      <div class="result-buttons">
+        <button onclick="restartQuiz()">再測一次</button>
+        <button onclick="location.href='index.html'">回首頁</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === 密碼登入 ===
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value.trim();
+      const error = document.getElementById("loginError");
+      if (input === "ilove808") {
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("startScreen").style.display = "block";
+        error.style.display = "none";
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    // === 測驗功能 ===
+    let nickname = "";
+    const questions = [
+      { q: "當你聽到奇怪的聲音時，你會：", a: ["假裝沒聽見", "嘗試回應它", "拿手機錄下來"], type: ["A","B","C"] },
+      { q: "夜裡醒來發現有人站在床邊，你會：", a: ["裝睡", "問他要不要喝水", "拿出手機自拍"], type: ["A","B","C"] },
+      { q: "醫院的燈忽明忽暗時，你會：", a: ["數閃爍的次數", "覺得有人在打密碼", "拿遙控器試著關掉它"], type: ["A","B","C"] },
+      { q: "醫生遞給你一張空白病歷，你會：", a: ["畫上你的笑臉", "寫下『我沒病』", "把它撕成小紙鶴"], type: ["A","B","C"] },
+      { q: "有人問你為什麼在這裡，你回答：", a: ["我只是路過", "我是醫生", "你也是病人不是嗎？"], type: ["A","B","C"] },
+      { q: "如果鏡子裡的自己先眨眼：", a: ["當作沒看到", "揮手回應", "說『今天狀態不錯嘛』"], type: ["A","B","C"] },
+      { q: "當護士叫錯你的名字：", a: ["指正她", "用那個名字回應", "記下她的名字"], type: ["A","B","C"] },
+      { q: "有人笑，你也會：", a: ["跟著笑", "停止呼吸", "問『有什麼好笑的？』"], type: ["A","B","C"] },
+      { q: "如果被關在病房裡：", a: ["試著找出口", "把牆塗滿數字", "跟牆壁聊天"], type: ["A","B","C"] },
+      { q: "醫生問你：『你覺得自己正常嗎？』", a: ["當然", "你覺得呢？", "正常是什麼意思？"], type: ["A","B","C"] }
+    ];
+
+    const results = {
+      A: { title: "強迫型病患（Compulsion Type）", text: "🩸 你反覆擦拭手、數著步伐，試圖讓世界變得整齊。\n💀 一旦順序被打亂，你就開始從頭數——直到燈滅為止。" },
+      B: { title: "幻聽型病患（Auditory Hallucination Type）", text: "🩸 你聽到別人聽不見的聲音，那聲音說它一直都在。\n💀 你曾試著堵住耳朵，但聲音改用你的思緒說話。" },
+      C: { title: "研究者型病患（Researcher Type）", text: "🩸 你聲稱自己是醫生，卻對自己的檔案毫無記憶。\n💀 也許你真的曾是醫生，只是研究對象是你自己。" }
+    };
+
+    let current = 0;
+    let counts = { A: 0, B: 0, C: 0 };
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const resultModal = document.getElementById("resultModal");
+
+    function startQuiz() {
+      nickname = document.getElementById("nickname").value.trim();
+      if (!nickname) { alert("請輸入暱稱以建立病歷。"); return; }
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      document.getElementById("welcomeTitle").textContent = `患者 ${nickname} 的心理測驗`;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = questions[current];
+      questionEl.textContent = `第 ${current + 1} 題 / ${questions.length} 題\n${q.q}`;
+      optionsEl.innerHTML = "";
+      q.a.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.textContent = opt;
+        btn.onclick = () => { counts[q.type[i]]++; nextQuestion(); };
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function nextQuestion() {
+      current++;
+      if (current < questions.length) showQuestion();
+      else showResult();
+    }
+
+    function showResult() {
+      const maxType = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+      const result = results[maxType];
+      document.getElementById("resultTitle").textContent = `【${nickname}】的診斷結果：${result.title}`;
+      document.getElementById("resultText").textContent = result.text;
+      resultModal.style.display = "flex";
+    }
+
+    function restartQuiz() {
+      current = 0;
+      counts = { A: 0, B: 0, C: 0 };
+      resultModal.style.display = "none";
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("startScreen").style.display = "block";
+      document.getElementById("nickname").value = "";
+    }
+  </script>
+</body>
+</html>
