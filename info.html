@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第八精神病院 - 介紹</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: url('bg.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Nosifer', cursive;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* 暗背景層 */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 130%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 6rem);
+      color: #ff0000;
+      text-shadow: 0 0 20px #ff0000;
+      animation: flicker 2s infinite, shake 3s infinite ease-in-out;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content {
+      max-width: 800px;
+      margin-top: 2.5rem;
+      font-size: clamp(1rem, 1.4vw, 1.5rem);
+      line-height: 1.8;
+      color: #ffdddd;
+      text-shadow: 0 0 10px #400000;
+      animation: flicker 4s infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    .info {
+      margin-top: 3rem;
+      background: rgba(50, 0, 0, 0.6);
+      border: 2px solid #ff0000;
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+      animation: flicker 5s infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    .info h3 {
+      color: #ff2222;
+      text-shadow: 0 0 10px #ff0000;
+      margin-bottom: 1rem;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+    }
+
+    .info p {
+      margin: 0.3rem 0;
+      font-size: clamp(1rem, 1.3vw, 1.4rem);
+      color: #ffcccc;
+      text-shadow: 0 0 8px #600000;
+    }
+
+    .buttons {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+      animation: shake 6s infinite ease-in-out;
+    }
+
+    button {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: clamp(0.6rem, 1.2vw, 1rem) clamp(1rem, 2vw, 2rem);
+      font-size: clamp(1rem, 1.5vw, 1.6rem);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: red;
+      border-color: red;
+      color: white;
+      text-shadow: 0 0 10px black;
+    }
+
+    footer {
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      font-size: clamp(0.8rem, 1vw, 1.2rem);
+      color: #ccc;
+      animation: flicker 5s infinite;
+      z-index: 1;
+      position: relative;
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.3; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      10% { transform: translate(-2px, -2px) rotate(-1deg); }
+      20% { transform: translate(2px, 1px) rotate(1deg); }
+      30% { transform: translate(-1px, 2px) rotate(-1deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-2px, 0) rotate(0deg); }
+      60% { transform: translate(2px, 2px) rotate(-1deg); }
+      70% { transform: translate(-1px, 1px) rotate(1deg); }
+      80% { transform: translate(1px, -2px) rotate(0deg); }
+      90% { transform: translate(2px, 1px) rotate(-1deg); }
+    }
+
+    /* ✅ 3840px 4K 響應式設定 */
+    @media (min-width: 3840px) {
+      body {
+        max-width: 3840px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 13rem;
+        margin-top: 5rem;
+      }
+      .content {
+        font-size: 3rem;
+        max-width: 1800px;
+        margin-top: 4rem;
+      }
+      .info {
+        width: 1600px;
+        padding: 3rem;
+        font-size: 2.5rem;
+        border-width: 4px;
+        border-radius: 30px;
+        box-shadow: 0 0 60px rgba(255, 0, 0, 0.7);
+      }
+      .info h3 {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+      }
+      .info p {
+        font-size: 2.8rem;
+      }
+      .buttons {
+        margin-top: 5rem;
+        gap: 3rem;
+      }
+      button {
+        width: 35rem;
+        font-size: 3rem;
+        border-width: 3px;
+        padding: 2rem 4rem;
+      }
+      footer {
+        font-size: 2rem;
+        margin-top: 4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>關於第八精神病院</h1>
+
+  <div class="content">
+    <p>他們說，這家醫院十年前就已經廢棄了。<br>
+        但為何在夜晚，仍能聽見手術室裡傳來的聲音？<br>
+        有人說那是求救，有人說那是實驗還沒結束。<br>
+        這次，我們打開了那扇門。<br>
+        你……會進來嗎？</p>
+  </div>
+
+  <div class="info">
+    <h3>⚠️ 鬼屋基本資料</h3>
+    <p>📍 地點：8年8班教室（4樓過八角亭後左轉第4間教室）</p>
+    <p>🕐 開放時間：11月15日（校慶日）</p>
+    <p>💰 入場費：50元</p>
+    <p>📞 聯絡方式：8年8班電話 分機808 或 現場服務台</p>
+  </div>
+
+  <div class="buttons">
+    <button onclick="location.href='index.html'">回首頁</button>
+  </div>
+
+  <footer>「第八精神病院」 — 校慶限定開放</footer>
+</body>
+</html>
