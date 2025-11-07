@@ -234,9 +234,6 @@ function flipCard(card){
       secondCard.classList.add("matched");
       matchedPairs++;
       resetFlip();
-      if(matchedPairs >= 2){
-        setTimeout(() => showResult(true), 600);
-      }
     } else {
       lives--;
       document.getElementById("lives").textContent = "剩餘錯誤次數：" + lives;
@@ -250,9 +247,7 @@ function flipCard(card){
     }
 
     if(lives <= 0 || attempts >= 3){
-      if(matchedPairs < 2){
-        setTimeout(() => showResult(false), 600);
-      }
+      setTimeout(() => showResult(), 600);
     }
   }
 }
@@ -262,12 +257,20 @@ function resetFlip(){
   lock = false;
 }
 
-function showResult(success){
+function showResult(){
   document.getElementById("game").style.display = "none";
   document.getElementById("result").style.display = "block";
-  document.getElementById("resultText").innerHTML = success
-    ? "🩸 恭喜！你被診斷為完治患者，可退 50 元"
-    : "💀 病情惡化，請重新治療（再付 35 元）";
+
+  let resultText = "";
+  if(matchedPairs >= 2){
+    resultText = "🩸 恭喜！你被診斷為【完治患者】";
+  } else if(matchedPairs === 1){
+    resultText = "😵 你被診斷為【神經病】";
+  } else {
+    resultText = "💀 你是【終極神經病】——醫院放棄治療。";
+  }
+
+  document.getElementById("resultText").innerHTML = resultText;
 }
 </script>
 </body>
