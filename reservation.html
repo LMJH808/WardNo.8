@@ -3,13 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第八精神病院 - 入院預約</title>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("VuhBknBXBuQYRZ-Tz"); // ← 這裡要換成你的 EmailJS 公開金鑰
-    })();
-  </script>
+  <title>第八精神病院 - 預約截止</title>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
 
@@ -44,49 +39,34 @@
     }
 
     h1 {
-      font-size: clamp(2rem, 5vw, 6rem);
+      font-size: clamp(2.5rem, 6vw, 6rem);
       color: #ff0000;
       text-shadow: 0 0 25px #ff0000;
-      animation: flicker 2s infinite, shake 3s infinite ease-in-out;
+      animation: flicker 2.5s infinite, shake 4s infinite ease-in-out;
       margin-top: 2rem;
       z-index: 1;
     }
 
-    .form-box {
+    .end-box {
       position: relative;
       z-index: 1;
-      background: rgba(50, 0, 0, 0.7);
+      background: rgba(50, 0, 0, 0.75);
       border: 3px solid #ff0000;
-      border-radius: 20px;
-      padding: 2rem 3rem;
-      box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+      border-radius: 25px;
+      padding: 3rem 4rem;
+      box-shadow: 0 0 45px rgba(255, 0, 0, 0.7);
       max-width: 700px;
       width: 80%;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
     }
 
-    label {
-      display: block;
-      margin-top: 1.2rem;
-      font-size: clamp(1.2rem, 1.6vw, 1.8rem);
-      color: #ffcccc;
-      text-shadow: 0 0 10px #400000;
-    }
-
-    input, select {
-      width: 50%;
-      padding: 0.8rem;
-      margin-top: 0.5rem;
-      font-size: 1.2rem;
-      border-radius: 10px;
-      border: 2px solid white;
-      background: rgba(255,255,255,0.1);
-      color: white;
-      text-align: center;
-    }
-    select option{
-        background-color: white;
-        color: black;
+    .end-text {
+      font-size: clamp(1.8rem, 2.8vw, 3rem);
+      color: #ff5555;
+      text-shadow: 0 0 15px #ff0000;
+      animation: flicker 3s infinite;
+      margin-bottom: 2rem;
+      line-height: 1.6;
     }
 
     button {
@@ -95,7 +75,7 @@
       border: 2px solid white;
       color: white;
       padding: 0.8rem 2rem;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
@@ -104,16 +84,7 @@
     button:hover {
       background: red;
       border-color: red;
-      text-shadow: 0 0 10px black;
       transform: scale(1.05);
-    }
-
-    .message {
-      display: none;
-      margin-top: 2rem;
-      color: #ff6666;
-      text-shadow: 0 0 15px #ff0000;
-      font-size: 1.4rem;
     }
 
     footer {
@@ -144,15 +115,13 @@
       90% { transform: translate(2px, 1px) rotate(-1deg); }
     }
 
-    /* ✅ 4K 響應式 */
+    /* 4K 響應式 */
     @media (min-width: 3840px) {
-      h1 { font-size: 12rem; margin-top: 4rem; }
-      .form-box { max-width: 1800px; padding: 5rem 6rem; border-width: 6px; border-radius: 40px; }
-      label { font-size: 3.5rem; }
-      input, select { font-size: 3rem; padding: 2rem; border-width: 5px; max-width: 1000px; }
-      button { font-size: 3rem; padding: 2rem 4rem; border-width: 5px; border-radius: 25px; }
-      .message { font-size: 3rem; }
-      footer { font-size: 2rem; margin-top: 5rem; }
+      h1 { font-size: 11rem; }
+      .end-box { max-width: 1900px; padding: 6rem 8rem; }
+      .end-text { font-size: 4.5rem; }
+      button { font-size: 3rem; padding: 2rem 4rem; border-width: 5px; }
+      footer { font-size: 2.3rem; }
     }
   </style>
 </head>
@@ -160,89 +129,18 @@
 <body>
   <h1>第八精神病院入院預約</h1>
 
-  <div class="form-box">
-    <label>年級：</label>
-    <select id="grade">
-        <option value="">請選擇年級</option>
-        <option>7年級</option>
-        <option>8年級</option>
-        <option>9年級</option>
-        <option>教職員工</option>
-    </select>
+  <div class="end-box">
+    <div class="end-text">
+      🩸 本次鬼屋活動入院預約<br>
+      已全數截止。<br><br>
+      感謝各位勇者的熱情響應……<br>
+      下次再見時，<br>
+      我們會在黑暗中等你。
+    </div>
 
-    <label>班級：</label>
-    <select id="class">
-        <option value="">請選擇班級</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-        <option>13</option>
-        <option>14</option>
-        <option>15</option>
-        <option>16</option>
-        <option>教職員工</option>
-    </select>
-
-    <label>人數：</label>
-    <input type="number" id="people" min="1" max="10" placeholder="最多10人"><br>
-
-    <button onclick="submitForm()">送出預約</button>
-
-    <div class="message" id="msg">🩸 預約成功！請於指定時段準時報到。</div>
-
-    <button style="margin-top:1.5rem;" onclick="location.href='index.html'">回首頁</button>
+    <button onclick="location.href='index.html'">回首頁</button>
   </div>
 
   <footer>「第八精神病院」 — 校慶限定診療預約系統</footer>
-
-  <script>
-    function submitForm() {
-      const grade = document.getElementById('grade').value;
-      const clazz = document.getElementById('class').value;
-      const people = document.getElementById('people').value;
-  
-      if (!grade || !clazz || !people) {
-        alert("請完整填寫年級、班級與人數！");
-        return;
-      }
-  
-      // 🩸 新增確認提示
-      const confirmSend = confirm("確認送出預約嗎？");
-      if (!confirmSend) {
-        return; // 使用者按取消
-      }
-  
-      const templateParams = {
-        grade: grade,
-        clazz: clazz,
-        people: people,
-      };
-  
-      emailjs.send("service_n6y2b6o", "template_g9e4fes", templateParams)
-        .then(() => {
-          document.getElementById('msg').style.display = 'block';
-          // ✅ 成功後再詢問是否回首頁
-          setTimeout(() => {
-            if (confirm("預約成功！是否回首頁？")) {
-              location.href = 'index.html';
-            }
-          }, 300);
-        })
-        .catch((error) => {
-          alert("傳送失敗：" + JSON.stringify(error));
-        });
-    }
-  </script>
-  
-
 </body>
 </html>
